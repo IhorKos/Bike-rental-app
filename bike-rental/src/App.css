@@ -1,0 +1,62 @@
+.App {
+  text-align: start;
+  background-color: #EFEFEF;
+  min-height: 100vh;
+  
+  
+}
+
+.mainWrap {
+  margin: 0 auto;
+  padding-top: 30px;
+  max-width: 800px;
+}
+
+.form {
+  background-color: #D7D7D7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px; 
+  padding: 0 20px 0 20px;
+  border: #8C8C8C 1px solid;
+  border-radius: 5px;
+}
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -20px;
+}
+
+.bicycle {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px; 
+  padding: 0 20px 0 20px;
+  border: #8C8C8C 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+}
+
+.btn {
+  color: #fff;
+  background-color: #30be3c;
+  height: 30px;
+  width: 110px;
+  border: 0;
+  border-radius: 2px;
+  margin-left: 15px;
+}
+
+.btn-delete {
+  background-color: #da3434;
+}
+
+.btn-rent {
+  background-color: #0e1a88;
+}
