@@ -1,18 +1,18 @@
 import React from 'react';
 import './App.css';
 import Form from './components/Form';
-import RentList from './components/RentList';
 import BicycleList from './components/BicycleList';
-import useAsync from './components/useAsync';
-import server from './components/server';
+import useAsync from './useAsync';
+import { loadBicycles, updateBicycle, deleteBicycle } from './server';
 
 
 function App() {
-  const { value, pending } = useAsync(server.loadAll);
-  const totalRentAmount = this.state.bicycles.filter(b => !b.rent).reduce(function(total, b) {
-    return total + b.rent_price;
-  }, 0);
-  const totalAvailableCount = this.state.bicycles.filter(b => !b.rent).length;
+  const { value, pending, execute } = useAsync(loadBicycles);
+
+  const totalRentAmount = value
+    ? value.filter(b => b.rent).reduce((total, b) => total + b.rent_price, 0)
+    : 0;
+  const totalAvailableCount = value ? value.filter(b => !b.rent).length : 0;
 
   return (
     <div className="App">
@@ -23,8 +23,16 @@ function App() {
         {pending
           ? <p>Loading bicycles</p>
           : <div>
-            <BicycleList bicycles={value.filter( b => b.rent )} title={`Your rent (Total: ${totalRentAmount})`} />
-            <BicycleList bicycles={value.filter( b => !b.rent)} title={`Available bicycles (${totalAvailableCount})`} />
+            <BicycleList
+              title={`Your rent (Total: ${totalRentAmount})`}
+              bicycles={value ? value.filter(b => b.rent) : []}
+            />
+            <BicycleList
+              title={`Available bicycles (${totalAvailableCount})`}
+              bicycles={value ? value.filter(b => !b.rent) : []}
+              onRent={id => updateBicycle(id, { rent: true }).then(execute)}
+              onDelete={id => deleteBicycle(id).then(execute)}
+            />
           </div>
         }
       </div>

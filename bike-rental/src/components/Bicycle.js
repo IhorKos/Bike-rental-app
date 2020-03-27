@@ -1,36 +1,26 @@
 import React from 'react';
-import { bikesData } from './bikesData';
 
-
-class Bicycle extends React.Component {
-    constructor () {
-        super();
-
-        this.state = {
-            bikes: bikesData 
-        };// state это обьект с ключом bikes
-    }
-
-    render () {
-        console.log(this);
-        return <div className="bicycle">
-            <p>
-                {this.state.bikes[0].bike_name}  
-                / {this.state.bikes[0].bike_type}
-                / ${this.state.bikes[0].rent_price}
-            </p>
-            <div>
-            {this.state.bikes[0].rent
-            ? <button className="btn btn-cancel" type="button">Cancel rent</button>
-            : <div>
-                <button className="btn btn-rent" type="button">Rent</button>
-                <button className="btn btn-delete" type="button">Delete</button>
-              </div>
-            }
-</div>
-        </div>; //кнопку нужно оживить <button className="btn btn-delete" type="button">Cancel rent</button>
-         
-    }
-}
+const Bicycle = ({ bicycle, onRent, onDelete }) => (
+  <div className="bicycle">
+    <p>{bicycle.bike_name} / {bicycle.bike_type} / ${bicycle.rent_price}</p>
+    <div>
+      {bicycle.rent
+        ? <button className="btn btn-cancel" type="button">Cancel rent</button>
+        : <div>
+          <input type="button"
+            className="btn btn-rent"
+            onClick={onRent}
+            value="Rent"
+          />
+          <input type="button"
+            className="btn btn-delete"
+            onClick={onDelete}
+            value="Delete"
+          />
+        </div>
+      }
+    </div>
+  </div> //кнопку нужно оживить <button className="btn btn-delete" type="button">Cancel rent</button>
+);
 
 export default Bicycle;

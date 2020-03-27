@@ -1,23 +1,17 @@
 import React from 'react';
+import Bicycle from './Bicycle';
 
-
-export default function BicycleList() {
-  return (
-    const totalRentAmount = this.state.bicycles.filter(b => !b.rent).reduce(function(total, b) {
-      return total + b.rent_price
-    }, 0)
-
-    const totalAvailableCount = this.state.bicycles.filter(b => !b.rent).length
-
-    <div>
-      <BicycleList
-        title={`Your rent (Total: ${totalRentAmount})`}
-        bicycles={this.state.bicycles.filter(b => b.rent)} 
+const BicycleList = ({ title, bicycles, onRent, onDelete }) => (
+  <div>
+    <h2>{title}</h2>
+    {bicycles.map(bicycle => (
+      <Bicycle key={bicycle.id}
+        bicycle={bicycle}
+        onRent={() => onRent(bicycle.id)}
+        onDelete={() => onDelete(bicycle.id)}
       />
-      <BicycleList
-        title={`Available bicycles (${totalAvailableCount})`}
-        bicycles={this.state.bicycles.filter(b => !b.rent)} 
-      />
-    </div>                 
-  );
-} 
+    ))}
+  </div>
+);
+
+export default BicycleList;
