@@ -1,7 +1,7 @@
 import React from 'react';
 import Bicycle from './Bicycle';
 
-const BicycleList = ({ title, bicycles, onRent, onDelete }) => (
+const BicycleList = ({ title, bicycles, onRent, onDelete, onCancel }) => (
   <div>
     <h2>{title}</h2>
     {bicycles.map(bicycle => (
@@ -9,6 +9,7 @@ const BicycleList = ({ title, bicycles, onRent, onDelete }) => (
         bicycle={bicycle}
         onRent={() => onRent(bicycle.id)}
         onDelete={() => onDelete(bicycle.id)}
+        onCancel={() => onCancel(bicycle.id)}
       />
     ))}
   </div>

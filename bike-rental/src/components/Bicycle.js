@@ -1,11 +1,15 @@
 import React from 'react';
 
-const Bicycle = ({ bicycle, onRent, onDelete }) => (
+const Bicycle = ({ bicycle, onRent, onDelete, onCancel}) => (
   <div className="bicycle">
     <p>{bicycle.bike_name} / {bicycle.bike_type} / ${bicycle.rent_price}</p>
     <div>
       {bicycle.rent
-        ? <button className="btn btn-cancel" type="button">Cancel rent</button>
+        ? <input type="button"
+            className="btn btn-cancel"
+            onClick={onCancel}
+            value="Cancel rent"
+          />
         : <div>
           <input type="button"
             className="btn btn-rent"

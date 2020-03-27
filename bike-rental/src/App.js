@@ -10,7 +10,7 @@ function App() {
   const { value, pending, execute } = useAsync(loadBicycles);
 
   const totalRentAmount = value
-    ? value.filter(b => b.rent).reduce((total, b) => total + b.rent_price, 0)
+    ? value.filter(b => b.rent).reduce((total, b) => total + b.rent_price, 0).toFixed(2)
     : 0;
   const totalAvailableCount = value ? value.filter(b => !b.rent).length : 0;
 
@@ -24,8 +24,9 @@ function App() {
           ? <p>Loading bicycles</p>
           : <div>
             <BicycleList
-              title={`Your rent (Total: ${totalRentAmount})`}
+              title={`Your rent (Total: $${totalRentAmount})`}
               bicycles={value ? value.filter(b => b.rent) : []}
+              onCancel={id => updateBicycle(id, { rent: false }).then(execute)}
             />
             <BicycleList
               title={`Available bicycles (${totalAvailableCount})`}
@@ -39,22 +40,5 @@ function App() {
     </div>
   );
 }
-
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <div className="mainWrap">
-//         <h1>Awesome Bike Rental</h1>
-//         <h2>Create new rent</h2>
-//         <Form/>
-//         <h2>Your rent (Total: $12.99)</h2>
-//         <RentList/>
-//         <h2>Avaliable bicucles (3)</h2>
-//         <BicycleList/>
-//       </div>
-//     </div>
-//   );
-// }
 
 export default App;
