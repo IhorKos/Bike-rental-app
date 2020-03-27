@@ -19,8 +19,16 @@ class Bicycle extends React.Component {
                 / {this.state.bikes[0].bike_type}
                 / ${this.state.bikes[0].rent_price}
             </p>
-            <button className="btn btn-delete" type="button">Cancel rent</button>
-        </div>; //кнопку нужно оживить
+            <div>
+            {this.state.bikes[0].rent
+            ? <button className="btn btn-cancel" type="button">Cancel rent</button>
+            : <div>
+                <button className="btn btn-rent" type="button">Rent</button>
+                <button className="btn btn-delete" type="button">Delete</button>
+              </div>
+            }
+</div>
+        </div>; //кнопку нужно оживить <button className="btn btn-delete" type="button">Cancel rent</button>
          
     }
 }
