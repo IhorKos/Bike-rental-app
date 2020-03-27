@@ -1,4 +1,5 @@
 import React from 'react';
+import bikesData from './bikesData';
 
 export default function Bicycle() {
   return (       
