@@ -1,4 +1,4 @@
-const bikesData = [
+export const bikesData = [
     {
         id: 1001,
         bike_name: "Surerfast bicycle",
@@ -70,5 +70,3 @@ const bikesData = [
         rent: false
     }
 ];
-
-export default bikesData;
