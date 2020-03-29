@@ -1,3 +1,5 @@
+//взял хук на:   https://usehooks.com/useAsync/
+
 import { useState, useEffect, useCallback } from 'react';
 
 const useAsync = (asyncFunction, immediate = true) => {
