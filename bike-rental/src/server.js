@@ -1,4 +1,4 @@
-import { bikesData } from './bikesData';
+import bicyclesList from './bicycles';
 
 const clone = value => JSON.parse(JSON.stringify(value));
 
@@ -9,9 +9,18 @@ const remove = (array, value) => {
   return false;
 };
 
-export const loadBicycles = () => {
-  return Promise.resolve(clone(bikesData));
-};
+export const addBicycle = newBicycle => new Promise(resolve => {
+  setTimeout(()=> {
+    bicyclesList.push(newBicycle);
+    resolve();
+  }, 300);
+});
+
+export const loadBicycles = () => new Promise(resolve => {
+  setTimeout(() => {
+    resolve(clone(bicyclesList));
+  }, 300);
+});
 
 /**
  * @param {number} id
@@ -21,38 +30,29 @@ export const loadBicycles = () => {
  * @param {number} [patch.rent_price]
  * @param {boolean} [patch.rent]
  */
-export const updateBicycle = (id, patch) => {
-  const bicycle = bikesData.find(b => b.id === id);
-  if (!bicycle)
-    Promise.reject();
+export const updateBicycle = (id, patch) => new Promise((resolve, reject) => {
+  const bicycle = bicyclesList.find(b => b.id === id);
 
-  return new Promise(resolve => {
-    setTimeout(() => {
-      Object.assign(bicycle, patch);
-      resolve();
-    }, 400);
-  });
-};
+  if (!bicycle)
+    return reject();
+
+  setTimeout(() => {
+    Object.assign(bicycle, patch);
+    resolve();
+  }, 400);
+});
 
 /**
  * @param {number} id
  */
-export const deleteBicycle = (id) => {
-  const bicycle = bikesData.find(b => b.id === id);
+export const deleteBicycle = (id) => new Promise((resolve, reject) => {
+  const bicycle = bicyclesList.find(b => b.id === id);
+
   if (!bicycle)
-    Promise.reject();
+    return reject();
 
-  return new Promise(resolve => {
-    setTimeout(() => {
-      remove(bikesData, bicycle);
-      resolve();
-    }, 400);
-  });
-};
-
-
-  
-//   module.exports = {
-//     async addBike( … ) { … },
-//     async removeBike( … ) { … },
-//   }
+  setTimeout(() => {
+    remove(bicyclesList, bicycle);
+    resolve();
+  }, 400);
+});

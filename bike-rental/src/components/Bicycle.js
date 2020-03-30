@@ -7,11 +7,7 @@ const Bicycle = ({ bicycle, onRent, onDelete, onCancel}) => (
       {bicycle.rent
         ? 
         <div> 
-          {/* <input type="button"
-            className="btn btn-delete"
-            onClick={console.log("kjdhkj")}
-            value="Time"
-          /> */}
+          
           <input type="button"
             className="btn btn-cancel"
             onClick={onCancel}
