@@ -1,4 +1,5 @@
 import React from 'react';
+import calcHours from '../calcHours'
 
 const Bicycle = ({ bicycle, onRent, onDelete, onCancel}) => (
   <div className="bicycle">
@@ -7,7 +8,11 @@ const Bicycle = ({ bicycle, onRent, onDelete, onCancel}) => (
       {bicycle.rent
         ? 
         <div> 
-          
+          <input type="button"
+            className="btn"
+            onClick={calcHours}
+            value="calc rent time"
+          />
           <input type="button"
             className="btn btn-cancel"
             onClick={onCancel}
